@@ -1,0 +1,19 @@
+{
+  "name": "probando-cordless",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "typescript": "^4.7.3"
+  },
+  "dependencies": {
+    "axios": "^0.27.2",
+    "cordless": "^2.1.0",
+    "dotenv": "^16.0.1"
+  }
+}
