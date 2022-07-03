@@ -1,7 +1,7 @@
 import { init } from 'cordless';
-import { helpCommand, pokemon } from './src/functions/pokemon';
-import { BotOptions } from './src/types/botOptions';
-import { config } from './src/helpers/config';
+import { helpCommand, pokemon } from 'functions/pokemon';
+import { BotOptions } from 'types/botOptions';
+import { config } from 'helpers/config';
 
 const botToken: string = config('DISCORD_BOT_TOKEN');
 const options: BotOptions = {

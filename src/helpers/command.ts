@@ -3,5 +3,5 @@ export function extractParameters(content: string, separator: string): string[] 
 }
 
 export function isThisTheCommand(functionCommand: string, actualCommand: string): boolean {
-    return actualCommand.startsWith(`${functionCommand} `);
+    return actualCommand.startsWith(`${functionCommand}`);
 }

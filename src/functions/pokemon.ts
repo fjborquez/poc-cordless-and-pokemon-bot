@@ -1,8 +1,8 @@
-import { Pokemon } from './../types/pokemon';
+import { Pokemon } from 'types/pokemon';
 import { BotFunction } from "cordless";
-import { fetchPokemon } from "../helpers/pokemonApi";
-import { extractParameters, isThisTheCommand } from '../helpers/command';
-import { config } from '../helpers/config';
+import { fetchPokemon } from "helpers/pokemonApi";
+import { extractParameters, isThisTheCommand } from 'helpers/command';
+import { config } from 'helpers/config';
 
 const parametersSeparator: string = config('PARAMETERS_SEPARATOR');
 const command: string = '/pokemon';
