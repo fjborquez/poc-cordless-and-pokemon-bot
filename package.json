@@ -4,7 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "jest test"
+    "test": "jest test",
+    "start": "npx ts-node-cwd -r tsconfig-paths/register ./src/index.ts"
   },
   "author": "",
   "license": "ISC",
@@ -16,11 +17,13 @@
     "babel-jest": "^28.1.1",
     "jest": "^28.1.1",
     "ts-jest": "^28.0.5",
+    "ts-node": "^10.9.1",
+    "tsconfig-paths": "^4.0.0",
     "typescript": "^4.7.3"
   },
   "dependencies": {
     "axios": "^0.27.2",
-    "cordless": "^2.1.0",
+    "cordless": "^3.0.0-beta.1",
     "dotenv": "^16.0.1"
   }
 }

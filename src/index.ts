@@ -1,13 +1,13 @@
 import { init } from 'cordless';
-import { helpCommand, pokemon } from 'functions/pokemon';
+import { helpCommand, pokemon } from '@functions/pokemon';
 import { BotOptions } from 'types/botOptions';
-import { config } from 'helpers/config';
+import { config } from '@helpers/config';
 
 const botToken: string = config('DISCORD_BOT_TOKEN');
 const options: BotOptions = {
   functions: [pokemon], 
-  helpCommand: helpCommand
+  helpCommand: helpCommand,
+  token: botToken,
 }
 
-const initialized = init(options);
-initialized.login(botToken);
+init(options);
