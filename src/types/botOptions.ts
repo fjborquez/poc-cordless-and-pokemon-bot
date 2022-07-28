@@ -1,7 +1,6 @@
-import { BotFunction } from "cordless"
+import { BotCommand } from "cordless"
 
 export type BotOptions = {
-    functions: BotFunction[],
-    helpCommand: string,
+    commands: BotCommand[],
     token: string
 }

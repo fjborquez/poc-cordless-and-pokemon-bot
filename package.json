@@ -23,7 +23,7 @@
   },
   "dependencies": {
     "axios": "^0.27.2",
-    "cordless": "^3.0.0-beta.1",
+    "cordless": "^3.0.0",
     "dotenv": "^16.0.1"
   }
 }

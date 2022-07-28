@@ -1,15 +1,19 @@
-import { pokemon } from "../../../src/functions/pokemon";
-import { fetchPokemon } from '../../../src/helpers/pokemonApi';
-import { Pokemon } from "../../../src/types/pokemon";
+import { pokemon } from "@functions/pokemon";
+import { fetchPokemon } from '@helpers/pokemonApi';
+import { Pokemon } from "types/pokemon";
 
-jest.mock('../../../src/helpers/pokemonApi', () => ({
+jest.mock('@helpers/pokemonApi', () => ({
     fetchPokemon: jest.fn()
 }));
 
 const mockedFetchPokemon = fetchPokemon as jest.Mock;
-const callbackToTest = pokemon.callback;
-const mockMessage: any = {
-    content: 'prueba prueba prueba',
+const callbackToTest = pokemon.handler;
+const mockInteraction: any = {
+    options: {
+        getNumber: () => {
+            return 1;
+        }
+    },
     reply: jest.fn()
 };
 
@@ -23,16 +27,16 @@ describe('pokemon function', () => {
         };
 
         mockedFetchPokemon.mockResolvedValue(httpBody);
-        (callbackToTest(mockMessage, {} as any) as Promise<void>).then(_ => {
-            expect(mockMessage.reply).toBeCalled();
+        (callbackToTest(mockInteraction) as Promise<void>).then(_ => {
+            expect(mockInteraction.reply).toBeCalled();
         });
     });
 
     test('it should execute Message.reply() when fetching a pokemon is failure', () => {
         mockedFetchPokemon.mockRejectedValue({});
         
-        (callbackToTest(mockMessage, {} as any) as Promise<void>).then(_ => {
-            expect(mockMessage.reply).toBeCalled();
+        (callbackToTest(mockInteraction) as Promise<void>).then(_ => {
+            expect(mockInteraction.reply).toBeCalled();
         });
     });
 });
