@@ -1,42 +1,42 @@
-import { pokemon } from "@functions/pokemon";
+import { command } from '@functions/pokemon';
 import { fetchPokemon } from '@helpers/pokemonApi';
-import { Pokemon } from "types/pokemon";
+import { Pokemon } from 'types/pokemon';
+import { BotCommandHandlerArgs } from 'cordless';
 
 jest.mock('@helpers/pokemonApi', () => ({
     fetchPokemon: jest.fn()
 }));
 
 const mockedFetchPokemon = fetchPokemon as jest.Mock;
-const callbackToTest = pokemon.handler;
-const mockInteraction: any = {
-    options: {
-        getNumber: () => {
-            return 1;
-        }
-    },
-    reply: jest.fn()
-};
+const callbackToTest = command.handler;
+const mockedArgs = {
+    'interaction': {
+        'options': {
+            'getNumber': jest.fn()
+        },
+        'reply': jest.fn()
+    }
+} as unknown as BotCommandHandlerArgs;
 
 describe('pokemon function', () => {
-    test('it should execute Message.reply() when fetching a pokemon is ok', () => {
+    test('it should execute Message.reply() when fetching a pokemon is ok', async () => {
         const pikachu: Pokemon = {
-            name: 'pikachu'
+            name: 'pikachu',
         };
         const httpBody = {
             data: pikachu
         };
 
         mockedFetchPokemon.mockResolvedValue(httpBody);
-        (callbackToTest(mockInteraction) as Promise<void>).then(_ => {
-            expect(mockInteraction.reply).toBeCalled();
-        });
+        await callbackToTest(mockedArgs);
+        
+        expect(mockedFetchPokemon).toBeCalled();
     });
 
-    test('it should execute Message.reply() when fetching a pokemon is failure', () => {
+    test('it should execute Message.reply() when fetching a pokemon is failure', async () => {
         mockedFetchPokemon.mockRejectedValue({});
-        
-        (callbackToTest(mockInteraction) as Promise<void>).then(_ => {
-            expect(mockInteraction.reply).toBeCalled();
-        });
+        await callbackToTest(mockedArgs);
+
+        expect(mockedFetchPokemon).toBeCalled();
     });
 });
